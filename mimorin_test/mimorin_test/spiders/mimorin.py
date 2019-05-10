@@ -4,15 +4,15 @@ import scrapy
 
 class MimorinSpider(scrapy.Spider):
     name = 'mimorin'
-    allowed_domains = ['lineblog.me/mimori_suzuko']
-    start_urls = ['http://lineblog.me/mimori_suzuko/']
+    allowed_domains = ['lineblog.me']
+    start_urls = ['https://lineblog.me/mimori_suzuko/']
 
 
     def parse(self, response):
         # title出力
-        h1_titles = response.xpath('//h1/a/text()').extract()
-        for title in h1_titles:
-            print(title+'\n')
-        next_page = response.xpath('//*[@id="main-inner"]/div[3]/div/div/ul/li[1]/ol/li[2]/a/@href').extract()
-        print(next_page[0])
-        scrapy.Request(next_page[0], callback=self.parse)
+        for article in response.css('article.article'):
+            blog_title = article.css('header.article-header h1 a::text').extract_first()
+            yield {"title": blog_title}
+
+        next_url = 'https://lineblog.me/mimori_suzuko/?p=2'
+        yield scrapy.Request(next_url, callback=self.parse)
