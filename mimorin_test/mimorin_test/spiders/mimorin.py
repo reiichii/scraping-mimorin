@@ -16,10 +16,6 @@ class MimorinSpider(scrapy.Spider):
             item['image_urls'].append(image_url)
 
         return item
-        # title出力
-        # for article in response.css('article.article'):
-        #     blog_title = article.css('header.article-header h1 a::text').extract_first()
-        #     yield {"title": blog_title}
 
         # next_url = 'https://lineblog.me/mimori_suzuko/?p=2'
         # yield scrapy.Request(next_url, callback=self.parse)

@@ -64,9 +64,10 @@ DOWNLOAD_DELAY = 3
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-   'mimorin_test.pipelines.MimorinTestPipeline': 300,
-}
+# ITEM_PIPELINES = {
+#    'mimorin_test.pipelines.MimorinTestPipeline': 300,
+# }
+ITEM_PIPELINES = {'scrapy.pipelines.images.ImagesPipeline': 1}
 IMAGES_STORE = str(os.environ['HOME']+'/Desktop/mimorin_pict/')
 
 # Enable and configure the AutoThrottle extension (disabled by default)
