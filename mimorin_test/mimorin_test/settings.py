@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import os
 # Scrapy settings for mimorin_test project
 #
 # For simplicity, this file contains only settings considered important or
@@ -64,9 +64,10 @@ DOWNLOAD_DELAY = 3
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'mimorin_test.pipelines.MimorinTestPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'mimorin_test.pipelines.MimorinTestPipeline': 300,
+}
+IMAGES_STORE = str(os.environ['HOME']+'/Desktop/mimorin_pict/')
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
